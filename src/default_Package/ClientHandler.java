@@ -12,7 +12,7 @@ public class ClientHandler extends Thread {
 		this.nbClient=clientNb;
 		System.out.println("Connextion Avec Le Server( " +so.getInetAddress() + ")Etabli avec Succes");
 	}
-	public void run() { // Création de thread qui envoi un message à un client
+	public void run() { 
 		try {
 		DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 		out.writeUTF("Hello from server - you are client#" + nbClient); 
@@ -25,4 +25,6 @@ public class ClientHandler extends Thread {
 		System.out.println("Couldn't close a socket, what's going on?");}
 		System.out.println("Connection with client# " + nbClient+ " closed");}
 		}
+	
+	
 		}
