@@ -1,10 +1,9 @@
 package default_Package;
+import java.net.Socket;
 import java.net.ServerSocket;
 import java.net.InetSocketAddress;
 import java.net.InetAddress;
 import java.net.Inet4Address;
-
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Scanner;
@@ -14,7 +13,7 @@ private static ServerSocket listener;
 public static void main( String[] args) throws Exception {
 	//Atomic Integer pour eviter les problemes car plusieurs threads
 	 final AtomicInteger nbClient = new AtomicInteger(0);
-	 final UsersDatabase usersDb = new UsersDatabase(usersDbPath);
+	 final UsersDatabase usersDb = new UsersDatabase("database.txt");
 
 	 try (Scanner sc = new Scanner(System.in)) {
 		 InetAddress serverIP;
@@ -59,7 +58,8 @@ public static void main( String[] args) throws Exception {
 
 		 try {
 			 while (true) {
-				 new ClientHandler(listener.accept(), nbClient.getAndIncrement(), usersDb).start();
+				 Socket client = listener.accept();
+				 new ClientHandler(client, nbClient.getAndIncrement(), usersDb).start();
 			 }
 		 } finally {
 			 // Fermeture de la connexion
