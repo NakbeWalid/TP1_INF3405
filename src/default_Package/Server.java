@@ -11,6 +11,7 @@ public class Server {
 private static ServerSocket listener;
 
 public static void main( String[] args) throws Exception {
+	
 	//Atomic Integer pour eviter les problemes car plusieurs threads
 	 final AtomicInteger nbClient = new AtomicInteger(0);
 	 final UsersDatabase usersDb = new UsersDatabase("database.txt");
@@ -23,7 +24,7 @@ public static void main( String[] args) throws Exception {
 			 System.out.println("Entrez l'IP du serveur (IPv4) : ");
 			 String ipServer = sc.nextLine().trim();
 			 if (!InputValidators.isValidIPv4Format(ipServer)) {
-				 System.out.println("Erreur: format IP invalide. Exemple valide: 132.207.29.107");
+				 System.out.println("Erreur: format IP invalide. Exemple valide: 127.0.0.1");
 				 continue;
 			 }
 
@@ -45,8 +46,9 @@ public static void main( String[] args) throws Exception {
 				 serverPort = port;
 
 				 listener = new ServerSocket();
-	 // En gros c'est une methode qui permet a un socket de se lier a un port 
-     //meme si il est en etat de fermeture ( par exemple si tu crash et que tu te reconnete rapi				 listener.setReuseAddress(true);
+				 
+				 // En gros c'est une methode qui permet a un socket de se lier a un port 
+				 // meme si il est en etat de fermeture ( par exemple si tu crash et que tu te reconnete rapi				 listener.setReuseAddress(true);
 				 listener.bind(new InetSocketAddress(serverIP, serverPort));
 				 break;
 			 } catch (Exception bindErr) {
@@ -62,6 +64,7 @@ public static void main( String[] args) throws Exception {
 				 new ClientHandler(client, nbClient.getAndIncrement(), usersDb).start();
 			 }
 		 } finally {
+			 
 			 // Fermeture de la connexion
 			 listener.close();
 		 }
