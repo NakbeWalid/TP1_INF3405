@@ -32,11 +32,11 @@ public class Client {
         	DataInputStream in = new DataInputStream(socket.getInputStream()); 
         	DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
         	
-		        System.out.println(in.readUTF()); // "Entrez votre nom d'utilisateur :"
+		        System.out.print(in.readUTF()); // "Entrez votre nom d'utilisateur :"
 		        String username = sc.nextLine();
 		        out.writeUTF(username);
 		
-		        System.out.println(in.readUTF()); // "Entrez votre mot de passe :" 
+		        System.out.print(in.readUTF()); // "Entrez votre mot de passe :" 
 		        String password = sc.nextLine();
 		        out.writeUTF(password);
 		

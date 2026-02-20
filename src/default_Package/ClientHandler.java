@@ -76,10 +76,10 @@ public class ClientHandler extends Thread {
             out.flush();
 
         } catch (IOException e) {
-            System.out.println("Erreur avec le client# " + nbClient + ": " + e);
+            System.out.println("Erreur avec le client " + nbClient + ": " + e);
         } finally {
             try { socket.close(); } catch (IOException e) {}
-            System.out.println("Connexion avec le client# " + nbClient + " terminée");
+            System.out.println("Connexion avec le client " + nbClient + " terminée");
         }
     }
 }

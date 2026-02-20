@@ -21,14 +21,14 @@ public static void main( String[] args) throws Exception {
 		 int serverPort;
 
 		 while (true) {
-			 System.out.println("Entrez l'IP du serveur (IPv4) : ");
+			 System.out.print("Entrez l'IP du serveur (IPv4) : ");
 			 String ipServer = sc.nextLine().trim();
 			 if (!InputValidators.isValidIPv4Format(ipServer)) {
 				 System.out.println("Erreur: format IP invalide. Exemple valide: 127.0.0.1");
 				 continue;
 			 }
 
-			 System.out.println("Entrez le port d'écoute (5000 à 5050) : ");
+			 System.out.print("Entrez le port d'écoute (5000 à 5050) : ");
 			 String portStr = sc.nextLine().trim();
 			 Integer port = InputValidators.parsePortInRange(portStr, 5000, 5050);
 			 if (port == null) {
